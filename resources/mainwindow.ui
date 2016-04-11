@@ -516,7 +516,7 @@
     <item>
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>PushButton</string>
+       <string>Calculate</string>
       </property>
      </widget>
     </item>
@@ -541,7 +541,7 @@
      <x>0</x>
      <y>0</y>
      <width>1116</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

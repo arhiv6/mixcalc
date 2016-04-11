@@ -1,3 +1,23 @@
+/*
+ * Copyright 2016 Vyacheslav Verkhovin
+ *
+ * This file is part of MixCalc.
+ *
+ * MixCalc is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RxCalc is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RxCalc. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -15,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // set application icon
+    //setWindowIcon(QPixmap(":/img/rxcalc.ico"));
+    setWindowTitle(APP_NAME " " APP_VERSION);
 
     scene = new QGraphicsScene(this);
     graphicView = new MyGraphicView(scene);
@@ -64,7 +88,23 @@ void MainWindow::on_pushButton_clicked()
 
     ui->horizontalSlider->setRange(floor(ui->min->text().toFloat())
                                    ,ceil(ui->max->text().toFloat()));
-    //ui->horizontalSlider->setValue(ui->); // TODO add
+    if (ui->comboBox->currentText() == "RF")
+    {
+        ui->horizontalSlider->setValue(ui->rfMin->text().toInt());
+    }
+    else if (ui->comboBox->currentText() == "LO")
+    {
+        ui->horizontalSlider->setValue(ui->loMin->text().toInt());
+    }
+    else if (ui->comboBox->currentText() == "IF")
+    {
+        ui->horizontalSlider->setValue(ui->ifMin->text().toInt());
+    }
+    else if (ui->comboBox->currentText() == "All")
+    {
+        //exit(0);// TODO исправить
+    }
+
 
     QList<freqStruct> freqList;
     freqStruct freq;
